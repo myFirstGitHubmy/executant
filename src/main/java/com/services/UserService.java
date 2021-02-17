@@ -22,5 +22,8 @@ public class UserService {
         return userRepo.getUserById(id);
     }
 
+    public User addUser(User user){
+        return userRepo.save(user);
+    }
 
 }

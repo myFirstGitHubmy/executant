@@ -22,6 +22,12 @@ public class User {
     public User() {
     }
 
+    public User(String login, String password, boolean isActive) {
+        this.login = login;
+        this.password = password;
+        this.isActive = isActive;
+    }
+
     public User(Long id, String login, String password, boolean isActive) {
         this.id = id;
         this.login = login;
@@ -53,7 +59,7 @@ public class User {
         this.password = password;
     }
 
-    public boolean isActive() {
+    public boolean getActive() {
         return isActive;
     }
 

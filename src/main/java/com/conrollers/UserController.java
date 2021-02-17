@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
 import java.util.List;
@@ -27,7 +24,6 @@ public class UserController {
     @GetMapping("/users")
     public ResponseEntity<List<User>> allUsers(CorsRegistry registry){
         List<User> allUsers = userService.getAllUsers();
-        registry.addMapping("/users").allowedOrigins("http://localhost:8080/api");
         return new ResponseEntity<List<User>>(allUsers, HttpStatus.OK);
     }
 
@@ -35,5 +31,12 @@ public class UserController {
     public ResponseEntity<User> getUserById(@PathVariable("id") Long id){
         User user = userService.getUserById(id);
         return new ResponseEntity<User>(user, HttpStatus.OK);
+    }
+
+    @PostMapping("/addUser")
+    public ResponseEntity<User> addUser(@RequestBody User user){
+        User newUser = new User(user.getLogin(),user.getPassword(),user.getActive());
+        User userSaved = userService.addUser(newUser);
+        return new ResponseEntity<User>(userSaved, HttpStatus.OK);
     }
 }
