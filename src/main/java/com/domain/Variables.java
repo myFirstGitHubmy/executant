@@ -1,9 +1,5 @@
 package com.domain;
 
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.stereotype.Indexed;
-
 import javax.persistence.*;
 
 @Entity
@@ -19,7 +15,7 @@ public class Variables {
     @Column(nullable = false)
     private boolean status;
 
-    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Command commands;
 
     public Variables() {
@@ -47,6 +43,8 @@ public class Variables {
         this.commands = commands;
     }
 
+
+
     public Long getId() {
         return id;
     }
@@ -66,6 +64,7 @@ public class Variables {
     public String getValue() {
         return value;
     }
+
     public void setValue(String value) {
         this.value = value;
     }
@@ -88,6 +87,6 @@ public class Variables {
 
     @Override
     public String toString() {
-        return String.format("Var[id: %d, name: %s, value: %s, status: %b, command_id: %d]",id,name,value,status,commands.getId());
+        return String.format("Var[id: %d, name: %s, value: %s, status: %b, command_id: %d]", id, name, value, status, commands.getId());
     }
 }

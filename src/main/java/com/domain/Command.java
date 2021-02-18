@@ -23,8 +23,8 @@ public class Command {
     @Column(nullable = false)
     private String ident;
 
-    @OneToMany(mappedBy = "commands",cascade = CascadeType.ALL)
-    private Collection<Variables> variables;
+//    @OneToMany(mappedBy = "commands",cascade = CascadeType.ALL)
+//    private Collection<Variables> variables;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private ExecutentProgramm program;
@@ -32,14 +32,17 @@ public class Command {
     public Command() {
     }
 
-    public Command(String name, boolean status, String ident,
-                   Collection<Variables> variables,
-                   ExecutentProgramm program) {
+    public Command(String name, boolean status, String ident, ExecutentProgramm program) {
         this.name = name;
         this.status = status;
         this.ident = ident;
-        this.variables = variables;
         this.program = program;
+    }
+
+    public Command(String name, boolean status, String ident) {
+        this.name = name;
+        this.status = status;
+        this.ident = ident;
     }
 
 
@@ -76,13 +79,13 @@ public class Command {
         this.ident = ident;
     }
 
-    public Collection<Variables> getVariables() {
-        return variables;
-    }
-
-    public void setVariables(Collection<Variables> variables) {
-        this.variables = variables;
-    }
+//    public Collection<Variables> getVariables() {
+//        return variables;
+//    }
+//
+//    public void setVariables(Variables variables) {
+//        this.variables.add(variables);
+//    }
 
     public ExecutentProgramm getProgram() {
         return program;

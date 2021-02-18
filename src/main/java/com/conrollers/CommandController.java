@@ -29,8 +29,8 @@ public class CommandController {
     @PostMapping("/addComm")
     public ResponseEntity<Command> addCommandByObject(@RequestBody Command command){
             ArrayList<Variables> newListVariables = new ArrayList<Variables>();
-            newListVariables.add(variablesService.saveVariable(new Variables("",true)));
-            Command newCommand = new Command(command.getName(), command.isStatus(), command.getIdent(), newListVariables, command.getProgram());
+//            newListVariables.add(variablesService.saveVariable(new Variables("",true)));
+            Command newCommand = new Command(command.getName(), command.isStatus(), command.getIdent());
             Command commandNew = commandService.saveCommand(newCommand);
             return new ResponseEntity<Command>(commandNew, HttpStatus.OK);
     }

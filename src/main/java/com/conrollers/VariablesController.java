@@ -1,5 +1,6 @@
 package com.conrollers;
 
+import com.domain.Command;
 import com.domain.Variables;
 import com.services.CommandService;
 import com.services.VariablesService;
@@ -9,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Controller
@@ -24,7 +27,7 @@ public class VariablesController {
         this.variablesService = variablesService;
     }
 
-    @PostMapping("/add_var")
+    @GetMapping("/add_var")
     public ResponseEntity<Variables> addVariablesByObject(@RequestBody Variables var){
 
         List<Variables> allVariables = variablesService.getAllVariables();
@@ -35,8 +38,10 @@ public class VariablesController {
 //            }
 //        }
 //        if (newVar == null){
-            newVar = new Variables(var.getName(),var.getValue(),var.isStatus(),commandService.getCommandById(var.getId()));
+            newVar = new Variables(var.getName(),true);
             Variables varSaved = variablesService.saveVariable(newVar);
+            Command com = commandService.getCommandById(varSaved.getCommands().getId());
+            commandService.saveCommand(com);
             return new ResponseEntity<Variables>(varSaved, HttpStatus.OK);
 //        }else{
 //            Variables varResave = newVar;
