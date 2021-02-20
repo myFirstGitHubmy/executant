@@ -1,5 +1,7 @@
 package com.domain;
 
+import com.domain.linkTable.LinkCommandAndVariable;
+
 import javax.persistence.*;
 
 @Entity

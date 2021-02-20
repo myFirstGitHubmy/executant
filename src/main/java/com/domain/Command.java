@@ -1,6 +1,7 @@
 package com.domain;
 
 
+import com.domain.linkTable.LinkCommandAndVariable;
 import lombok.Getter;
 import lombok.Setter;
 
