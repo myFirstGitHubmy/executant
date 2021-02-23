@@ -17,10 +17,10 @@ import java.util.List;
 @RequestMapping(path = "/api")
 public class CommandController {
     @Autowired
-    private CommandService commandService;
+    private final CommandService commandService;
 
     @Autowired
-    private VariablesService variablesService;
+    private  VariablesService variablesService;
 
     public CommandController(CommandService commandService) {
         this.commandService = commandService;
@@ -28,11 +28,9 @@ public class CommandController {
 
     @PostMapping("/addComm")
     public ResponseEntity<Command> addCommandByObject(@RequestBody Command command){
-            ArrayList<Variables> newListVariables = new ArrayList<Variables>();
-//            newListVariables.add(variablesService.saveVariable(new Variables("",true)));
             Command newCommand = new Command(command.getName(), command.isStatus(), command.getIdent());
-            Command commandNew = commandService.saveCommand(newCommand);
-            return new ResponseEntity<Command>(commandNew, HttpStatus.OK);
+                commandService.saveCommand(newCommand);
+            return new ResponseEntity<Command>(newCommand, HttpStatus.OK);
     }
 
     @GetMapping("/command/{id}")

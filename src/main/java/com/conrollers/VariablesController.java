@@ -2,6 +2,8 @@ package com.conrollers;
 
 import com.domain.Command;
 import com.domain.Variables;
+import com.domain.linkTable.LinkCommandAndVariable;
+import com.services.CommandAndVariableService;
 import com.services.CommandService;
 import com.services.VariablesService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +20,13 @@ import java.util.List;
 @RequestMapping(path = "/api")
 public class VariablesController {
     @Autowired
-    private VariablesService variablesService;
+    private final VariablesService variablesService;
 
     @Autowired
     private CommandService commandService;
+
+    @Autowired
+    private CommandAndVariableService commandAndVariableService;
 
     public VariablesController(VariablesService variablesService) {
         this.variablesService = variablesService;
@@ -29,29 +34,11 @@ public class VariablesController {
 
     @GetMapping("/add_var")
     public ResponseEntity<Variables> addVariablesByObject(@RequestBody Variables var){
-
-        List<Variables> allVariables = variablesService.getAllVariables();
-        Variables newVar = null;
-//        for (Variables pair:allVariables) {
-//            if (pair.getName().equals(var.getName())){
-//                newVar=pair;
-//            }
-//        }
-//        if (newVar == null){
-            newVar = new Variables(var.getName(),true);
+            Variables newVar = new Variables(var.getName(),var.getValue(),true);
             Variables varSaved = variablesService.saveVariable(newVar);
             Command com = commandService.getCommandById(varSaved.getCommands().getId());
             commandService.saveCommand(com);
             return new ResponseEntity<Variables>(varSaved, HttpStatus.OK);
-//        }else{
-//            Variables varResave = newVar;
-//            if (var.getValue()!=null&&!var.getValue().equals(varResave.getValue())) {
-//                varResave.setValue(var.getValue());
-//                variablesService.addVariable(newVar);
-//            }
-//            return new ResponseEntity<Variables>(varResave, HttpStatus.FOUND);
-//        }
-
     }
 
     @PostMapping("/update/var")

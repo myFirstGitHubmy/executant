@@ -30,6 +30,12 @@ public class Variables {
         this.commands = commands;
     }
 
+    public Variables(String name, String value, boolean status) {
+        this.name = name;
+        this.value = value;
+        this.status = status;
+    }
+
     public Variables(String name, boolean status) {
         this.name = name;
         this.status = status;
