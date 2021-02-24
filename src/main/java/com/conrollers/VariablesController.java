@@ -32,13 +32,11 @@ public class VariablesController {
         this.variablesService = variablesService;
     }
 
-    @GetMapping("/add_var")
+    @PostMapping("/add_var")
     public ResponseEntity<Variables> addVariablesByObject(@RequestBody Variables var){
             Variables newVar = new Variables(var.getName(),var.getValue(),true);
             Variables varSaved = variablesService.saveVariable(newVar);
-            Command com = commandService.getCommandById(varSaved.getCommands().getId());
-            commandService.saveCommand(com);
-            return new ResponseEntity<Variables>(varSaved, HttpStatus.OK);
+        return new ResponseEntity<Variables>(varSaved, HttpStatus.OK);
     }
 
     @PostMapping("/update/var")
