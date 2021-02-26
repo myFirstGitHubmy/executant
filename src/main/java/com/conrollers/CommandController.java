@@ -38,4 +38,10 @@ public class CommandController {
         Command receivedCommand = commandService.getCommandById(id);
         return new ResponseEntity<Command>(receivedCommand, HttpStatus.OK);
     }
+
+    @GetMapping("/allCommands")
+    public ResponseEntity<List<Command>> getAllCommands(){
+        List<Command> getAllCom = commandService.getAllCommand();
+        return new ResponseEntity<List<Command>>(getAllCom, HttpStatus.OK);
+    }
 }
