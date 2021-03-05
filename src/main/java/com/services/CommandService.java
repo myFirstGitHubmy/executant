@@ -17,4 +17,6 @@ public class CommandService {
     public List<Command> getAllCommand(){ return (List<Command>) commandRepo.findAll(); }
 
     public Command getCommandById(Long id){ return commandRepo.getCommandById(id); }
+
+    public void removeCommand(Long id){ commandRepo.deleteById(id); }
 }

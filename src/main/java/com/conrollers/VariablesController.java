@@ -1,8 +1,6 @@
 package com.conrollers;
 
-import com.domain.Command;
 import com.domain.Variables;
-import com.domain.linkTable.LinkCommandAndVariable;
 import com.services.CommandAndVariableService;
 import com.services.CommandService;
 import com.services.VariablesService;
@@ -12,8 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @Controller
@@ -58,5 +54,10 @@ public class VariablesController {
     public ResponseEntity<List<Variables>> getAllVariables(){
         List<Variables> allVar = variablesService.getAllVariables();
         return new ResponseEntity<List<Variables>>(allVar, HttpStatus.OK);
+    }
+
+    @GetMapping("/var/delete/{id}")
+    public void  removeVariableById(@PathVariable("id") Long id){
+        variablesService.removeVariable(id);
     }
 }
