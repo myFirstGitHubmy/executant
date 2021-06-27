@@ -12,11 +12,11 @@ public class CommandService {
     @Autowired
     private CommandRepo commandRepo;
 
-    public Command saveCommand(Command command){ return commandRepo.save(command); }
+    public Command save(Command command){ return commandRepo.save(command); }
 
-    public List<Command> getAllCommand(){ return (List<Command>) commandRepo.findAll(); }
+    public List<Command> getAll(){ return (List<Command>) commandRepo.findAll(); }
 
-    public Command getCommandById(Long id){ return commandRepo.getCommandById(id); }
+    public Command getById(Long id){ return commandRepo.getCommandById(id); }
 
-    public void removeCommand(Long id){ commandRepo.deleteById(id); }
+    public void removeById(Long id){ commandRepo.deleteById(id); }
 }
