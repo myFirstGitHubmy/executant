@@ -19,7 +19,5 @@ public class VariablesService {
 
     public List<Variables> getAll(){return (List<Variables>) variablesRepo.findAll();}
 
-    public Variables getVariableByCommandId(Long id){return variablesRepo.getByCommands_Id(id);}
-
     public void removeById(Long id){ variablesRepo.deleteById(id); }
 }

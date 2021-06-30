@@ -15,13 +15,12 @@ public class Variables {
     @Column(nullable = false)
     private boolean status;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Command commands;
+    private String commands;
 
     public Variables() {
     }
 
-    public Variables(String name, String value, boolean status, Command commands) {
+    public Variables(String name, String value, boolean status, String commands) {
         this.name = name;
         this.value = value;
         this.status = status;
@@ -38,18 +37,6 @@ public class Variables {
         this.name = name;
         this.status = status;
     }
-
-    public Variables(boolean status) {
-        this.status = status;
-    }
-
-    public Variables(String name, boolean status, Command commands) {
-        this.name = name;
-        this.status = status;
-        this.commands = commands;
-    }
-
-
 
     public Long getId() {
         return id;
@@ -83,16 +70,16 @@ public class Variables {
         this.status = status;
     }
 
-    public Command getCommands() {
+    public String getCommands() {
         return commands;
     }
 
-    public void setCommands(Command commands) {
+    public void setCommands(String commands) {
         this.commands = commands;
     }
 
     @Override
     public String toString() {
-        return String.format("Var[id: %d, name: %s, value: %s, status: %b, command_id: %d]", id, name, value, status, commands.getId());
+        return String.format("Var[id: %d, name: %s, value: %s, status: %b, command: %s]", id, name, value, status,commands);
     }
 }

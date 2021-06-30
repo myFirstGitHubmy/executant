@@ -1,5 +1,6 @@
 package com.conrollers;
 
+import com.domain.Command;
 import com.domain.Variables;
 import com.services.CommandService;
 import com.services.VariablesService;
@@ -15,16 +16,26 @@ import java.util.List;
 @Controller
 @RequestMapping(path = "/api/var")
 public class VariablesController {
+
     @Autowired
-    private final VariablesService variablesService;
+    private VariablesService variablesService;
 
     public VariablesController(VariablesService variablesService) {
         this.variablesService = variablesService;
     }
+    @Autowired
+    private CommandService commandService;
+
+    public VariablesController(CommandService commandService) {
+        this.commandService = commandService;
+    }
+
+    public VariablesController() {
+    }
 
     @PostMapping("/add")
     public ResponseEntity<Variables> addVariablesByObject(@RequestBody Variables var) {
-        Variables newVar = new Variables(var.getName(), var.getValue(), true);
+        Variables newVar = new Variables(var.getName(), var.getValue(), true, var.getCommands());
         Variables varSaved = variablesService.save(newVar);
         return new ResponseEntity<Variables>(varSaved, HttpStatus.OK);
     }

@@ -28,7 +28,7 @@ public class CommandController {
         return new ResponseEntity<Command>(savedCom, HttpStatus.OK);
     }
 
-    @GetMapping("/command/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Command> getCommandByObject(@PathVariable("id") Long id) {
         Command command = commandService.getById(id);
         return new ResponseEntity<Command>(command, HttpStatus.OK);
