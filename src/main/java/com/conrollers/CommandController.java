@@ -46,4 +46,7 @@ public class CommandController {
         List<Command> allCommands = commandService.getAll();
         return new ResponseEntity<List<Command>>(allCommands, HttpStatus.OK);
     }
+
+    @GetMapping("/deleteAll")
+    public void deleteAll() { commandService.removeAll(); }
 }

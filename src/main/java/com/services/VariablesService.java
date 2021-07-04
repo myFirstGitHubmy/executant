@@ -20,4 +20,7 @@ public class VariablesService {
     public List<Variables> getAll(){return (List<Variables>) variablesRepo.findAll();}
 
     public void removeById(Long id){ variablesRepo.deleteById(id); }
+
+    public void removeAll() { variablesRepo.deleteAll(); }
+    public Variables getByCommandId(String id){ return variablesRepo.getByCommands(id); }
 }

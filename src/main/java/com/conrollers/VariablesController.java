@@ -40,13 +40,12 @@ public class VariablesController {
         return new ResponseEntity<Variables>(varSaved, HttpStatus.OK);
     }
 
-    @PostMapping("/update")
-    public ResponseEntity<Variables> updateVariableById(@RequestBody Variables variables) {
-        Variables variableByIdById = variablesService.getById(variables.getId());
-        variableByIdById.setValue(variables.getValue());
-        variableByIdById.setValue(variables.getName());
-        variablesService.save(variableByIdById);
-        return new ResponseEntity<Variables>(variableByIdById, HttpStatus.OK);
+    @GetMapping("/update")
+    public ResponseEntity<Variables> updateVariableById(@RequestParam(value = "id") String id, @RequestParam(value = "value") String value) {
+        Variables variableById = variablesService.getByCommandId(id);
+        variableById.setValue(value);
+        variablesService.save(variableById);
+        return new ResponseEntity<Variables>(variableById, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
@@ -67,4 +66,7 @@ public class VariablesController {
         List<Variables> allVars = variablesService.getAll();
         return new ResponseEntity<List<Variables>>(allVars, HttpStatus.OK);
     }
+
+    @GetMapping("/deleteAll")
+    public void deleteAll() { variablesService.removeAll(); }
 }
