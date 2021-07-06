@@ -20,16 +20,24 @@ public class Command {
     @Column(nullable = false)
     private String ident;
 
+    @Column(name = "NAME_VARIABLE")
+    private String nameVariable;
+
+    @Column(name = "VALUE_VARIABLE")
+    private String valueVariable;
+
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private ExecutentProgramm program;
 
     public Command() {
     }
 
-    public Command(String name, boolean status, String ident) {
+    public Command(String name, boolean status, String ident, String nameVariable, String valueVariable) {
         this.name = name;
         this.status = status;
         this.ident = ident;
+        this.nameVariable = nameVariable;
+        this.valueVariable = valueVariable;
     }
 
     public Long getId() {
@@ -62,5 +70,21 @@ public class Command {
 
     public void setIdent(String ident) {
         this.ident = ident;
+    }
+
+    public String getNameVariable() {
+        return nameVariable;
+    }
+
+    public void setNameVariable(String nameVariable) {
+        this.nameVariable = nameVariable;
+    }
+
+    public String getValueVariable() {
+        return valueVariable;
+    }
+
+    public void setValueVariable(String valueVariable) {
+        this.valueVariable = valueVariable;
     }
 }
