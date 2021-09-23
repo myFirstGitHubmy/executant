@@ -21,4 +21,6 @@ public class CommandService {
     public void removeById(Long id){ commandRepo.deleteById(id); }
 
     public void removeAll() { commandRepo.deleteAll(); }
+
+    public Command updateCommand (Command command) { return commandRepo.save(command);}
 }

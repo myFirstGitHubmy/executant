@@ -23,7 +23,7 @@ public class CommandController {
 
     @PostMapping("/add")
     public ResponseEntity<Command> addCommandByObject(@RequestBody Command command) {
-        Command newCommand = new Command(command.getName(), command.isStatus(), command.getIdent(), command.getNameVariable(), command.getValueVariable());
+        Command newCommand = new Command(command.getName(), command.getStatus(), command.getIdent(), command.getNameVariable(), command.getValueVariable());
         Command savedCom = commandService.save(newCommand);
         return new ResponseEntity<Command>(savedCom, HttpStatus.OK);
     }
@@ -49,4 +49,12 @@ public class CommandController {
 
     @GetMapping("/deleteAll")
     public void deleteAll() { commandService.removeAll(); }
+
+    @PostMapping("/updateStatus")
+    public ResponseEntity<Command> updateStatusCommand (@RequestBody Command command){
+        Command comm = commandService.getById(command.getId());
+        comm.setStatus(command.getStatus());
+        commandService.updateCommand(comm);
+        return new ResponseEntity<Command>(comm, HttpStatus.OK);
+    };
 }

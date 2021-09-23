@@ -56,7 +56,7 @@ public class Command {
         this.name = name;
     }
 
-    public boolean isStatus() {
+    public boolean getStatus() {
         return status;
     }
 
@@ -87,4 +87,6 @@ public class Command {
     public void setValueVariable(String valueVariable) {
         this.valueVariable = valueVariable;
     }
+
+
 }
