@@ -24,6 +24,7 @@ public class ExecutentController {
     public ResponseEntity<String> deleteAllCommandAndVariables() {
         executentProgramService.removeAllVariables();
         executentProgramService.removeAllCommand();
+        executentProgramService.removeAllCondition();
         return new ResponseEntity<String>("All objects deleted",HttpStatus.OK);
     }
 }

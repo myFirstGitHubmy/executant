@@ -54,6 +54,12 @@ public class VariablesController {
         return new ResponseEntity<Variables>(receivedVar, HttpStatus.OK);
     }
 
+    @GetMapping("/getValueById/{id}")
+    public ResponseEntity<String> getValueById(@PathVariable("id") Long id) {
+        Variables variables = variablesService.getById(id);
+        return new ResponseEntity<String>(variables.getValue(),HttpStatus.OK);
+    }
+
     @GetMapping("/getAll")
     public ResponseEntity<List<Variables>> getAllVariables() {
         List<Variables> allVar = variablesService.getAll();
